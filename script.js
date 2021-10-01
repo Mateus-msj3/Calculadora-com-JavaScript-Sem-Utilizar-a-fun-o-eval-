@@ -1,11 +1,5 @@
-var display = document.getElementById('display');
-
 let operador = ['-', '+', '*', '/'];
 //Função de adicionar o número
-const addNumber = (numberCurrent) => {
-    let numberPrevious = document.getElementById('display').value;
-    document.getElementById('display').value = numberPrevious + numberCurrent;
-}
 
 const add = (value) => {
     let numberPrevious = document.getElementById('display').value;
@@ -27,28 +21,20 @@ const calcular = () => {
 
     let result = document.getElementById('display').value;
     result = result.split(/(\d+)/);
-    //Apliquei o filter para remover os elementos vazios
     let resultArray = result.filter((x) => x);
 
-    //Percorre o vetor em todo os seus elementos
     for (let i = 0; i < resultArray.length; i++) {
-        //Se dentro do array incluir operador * ou o operador /
         if (resultArray[i] == "*" || resultArray[i] == "/") {
-            //Se na posição atual do array conter o operador *
             if (resultArray[i] == "*") {
-                //pega o que na posição anterior dele e multiplica pela posição posterior ao operador
                 resultArray[i - 1] = parseFloat(resultArray[i - 1]) * parseFloat(resultArray[i + 1]);
-                //Se dentro do array incluir operador * ou o operador /
             }
             if (resultArray[i] == "/") {
-                //pega o que na posição anterior dele e multiplica pela posição posterior ao operador
                 resultArray[i - 1] = parseFloat(resultArray[i - 1]) / parseFloat(resultArray[i + 1]);
             }
 
             resultArray.splice(i, 2);
-            //Zerando a expressão
             i--;
-            
+
 
         }
     }
@@ -59,9 +45,8 @@ const calcular = () => {
                 resultArray[i - 1] = parseFloat(resultArray[i - 1]) + parseFloat(resultArray[i + 1]);
             }
             else {
-                    resultArray[i - 1] = parseFloat(resultArray[i - 1]) - parseFloat(resultArray[i + 1]);
+                resultArray[i - 1] = parseFloat(resultArray[i - 1]) - parseFloat(resultArray[i + 1]);
             }
-            //altera minha lista depois retorna o contéudo dela
             resultArray.splice(i, 2);
             i--;
 
@@ -72,18 +57,10 @@ const calcular = () => {
     document.getElementById('display').value = resultArray[0];
 }
 
-const existeDecimal = () =>{
-    document.getElementById('display').value.indexOf(',') != -1;
-}
-
-const existeValue = () =>{
-    document.getElementById('display').value.length > 0;
-}
-
 //Funcão que adiciona o decimal
 const addDecimal = (decimal) => {
     let point = document.getElementById('display').value;
-    
+
     document.getElementById('display').value = point + decimal;
 
 }
@@ -132,42 +109,3 @@ const clickKeybord = (event) => {
 }
 
 document.addEventListener('keydown', clickKeybord);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-for (i = 0; i < result.length; i++) {
-    if (result[3] == "*") {
-        resultado = parseInt(result[0]) + (parseInt(result[2]) * parseInt(result[4]))
-        document.getElementById('display').value = resultado;
-    } else if (result[1] == "-") {
-        resultado = parseInt(result[0]) - (parseInt(result[2]))
-        document.getElementById('display').value = resultado;
-        console.log(resultado)
-    } else if (result[1] == "*") {
-        resultado = parseInt(result[0]) * parseInt(result[2]);
-        document.getElementById('display').value = resultado;
-        console.log(resultado)
-    } else if (result[1] == "/") {
-        resultado = parseInt(result[0]) / parseInt(result[2]);
-        document.getElementById('display').value = resultado;
-        console.log(resultado)
-    } else if(result[1] == "+"){
-        resultado = parseInt(result[0]) + parseInt(result[2]);
-        document.getElementById('display').value = resultado;
-    }
-} */
